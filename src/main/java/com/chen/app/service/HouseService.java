@@ -172,14 +172,14 @@ public class HouseService {
         List<HouseDTO> houseDTOS = new ArrayList<>();
 
         Sort sort = new Sort(Sort.Direction.fromString(search.getDirection()), search.getOrderBy());
-        int page = search.getStart() / search.getLength(); //第几页
+        int page = search.getStart() / search.getLength();
         System.out.println("adminQuery is called, page : "+page+
                 ",search info:"+search.getStart()+","
                 +search.getLength()+","+search.getStart());
-        Pageable pageable = new PageRequest(page, search.getLength(), sort);
+        Pageable pageable =  PageRequest.of(page, search.getLength(), sort);
 
         Specification<House> specification = (root, query, cb)->{
-            //基础条件 账户为admin 房源状态不是删除
+
             javax.persistence.criteria.Predicate predicate = cb.equal(root.get("adminId"), LoginUserUtil.getLoginUser());
             predicate = cb.and(predicate, cb.notEqual(root.get("status"), HouseStatus.DELETED.getValue()));
 
@@ -206,12 +206,15 @@ public class HouseService {
             return predicate;
         };
 
-        List<House> houses = houseRepository.findAll(specification);
+        Page<House> housePage = houseRepository.findAll(specification,pageable);
+        Iterator<House> it = housePage.iterator();
 
-        houses.forEach(house->{
+        while(it.hasNext()) {
+            House house = it.next();
             HouseDTO houseDTO =modelMapper.map(house,HouseDTO.class);
             houseDTOS.add(houseDTO);
-        });
+        }
+
         System.out.println("HouseDTOS size : "+houseDTOS.size());
         return new ServiceMultipleResult(houseDTOS.size(), houseDTOS);
     }

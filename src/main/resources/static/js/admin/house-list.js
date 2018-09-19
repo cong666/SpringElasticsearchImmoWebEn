@@ -1,11 +1,8 @@
-// Import , control the pageable
 var table = $('#data-table').DataTable({
-    "order": [[7, "desc"]],//Order by createtime
-    "pageLength": 3, //display 3 item every page
+    "ordering": true,
+    "order": [[7, "desc"]],//Order by createtime by efault
     "paging": true, // if close paging
-    "lengthChange": false, // Do not allow users to change the number of records displayed on each page of the form
-    "searching": false, // Do not allow Datatables to active the local search
-    "ordering": true, // Active the Datatables' order
+    "lengthMenu": [[5, 25, 50, -1], [5, 25, 50, "All"]],
     "info": true, // display search info
     "autoWidth": true, // Datatable with : auto
     "stateSave": false, // allow the cache forDatatables
@@ -15,26 +12,12 @@ var table = $('#data-table').DataTable({
     "pagingType": "simple_numbers", // Page flip display: Previous and next two buttons, plus page button
     "language": {
         "sProcessing": "Processing...",
-        "sLengthMenu": "Display _MENU_ Results",
-        "sZeroRecords": "No Records Found",
-        "sInfo": "Display From _START_ To _END_ Results，Have _TOTAL_ Items",
-        "sInfoEmpty": "Display from 0 To 0 Results，Have 0 Items",
-        "sInfoFiltered": "(By _MAX_ Filter)",
-        "sInfoPostFix": "",
-        "sUrl": "",
-        "sEmptyTable": "No Records Found",
-        "sLoadingRecords": "Loading...",
-        "sInfoThousands": ",",
-        "oPaginate": {
-            "sFirst": "First Page",
-            "sPrevious": "Previous Page",
-            "sNext": "Next Page",
-            "sLast": "Last Page"
-        },
-        "oAria": {
-            "sSortAscending": ": Ascending",
-            "sSortDescending": ": Descending"
-        }
+         "lengthMenu": "Display _MENU_ records per page",
+         "zeroRecords": "Nothing found - sorry",
+         "info": "Showing page _PAGE_ of _PAGES_",
+         "infoEmpty": "No records available",
+         "infoFiltered": "(filtered from _MAX_ total records)"
+
     },
     columns: [{ // Binding the data
         data: "id",
@@ -49,6 +32,7 @@ var table = $('#data-table').DataTable({
         data: "area",
     }, {
         data: "price",
+        orderable: true
     }, {
         data: "floor",
     }, {
@@ -80,6 +64,9 @@ var table = $('#data-table').DataTable({
                 ' class="picture-thumb" src="http://localhost:8080/' + data + '?imageView2/1/w/200/h/100"></td>';
         }
     }, {
+        targets: 3,
+        orderData:[3]
+    },{
         targets: 7,
         render: function (data, type, row, meta) {
             return (new Date(data)).Format("yyyy-MM-dd hh:mm:ss");
