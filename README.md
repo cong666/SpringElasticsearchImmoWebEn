@@ -1,6 +1,8 @@
 # SpringElasticsearchImmoWebEn
 Use ElasticSearch to optimize the house searching
 
+![Search Page Show](src/main/resources/static/images/upload/github_readme1.png)
+
 ## Introduction
 ### Technologies : 
      - SpringBoot2.1,Datatables, BootStrap.
@@ -9,4 +11,8 @@ Use ElasticSearch to optimize the house searching
    
 ### Purpose of this application
 
-Try to create the search engine using ElasticSearch for the real estate website, I am sure that we can do that by using ES
+It's intresting to see how ElasticSearch work and how to create the search engine using ElasticSearch for the real estate website.
+
+### TODO
+
+  - The Frond-end need to be improved.
