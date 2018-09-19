@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="applicable-device" content="pc">
 
-    <title>寻屋</title>
+    <title>Find House</title>
     <meta name="description" content="Find Your House"/>
     <meta name="keywords" content="Find House"/>
     <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
@@ -25,7 +25,7 @@
                 <form class="clear" id="searchForm" action="#" method="get">
                     <div class="search-tab">
                         <i class="icon" data-bl="switch"></i>
-                        <div data-bl="switch" class="check">Key Words</div>
+                        <div data-bl="switch" class="check">Key</div>
                         <div class="txt-search">
                             <input class="left txt" name="keyword" autocomplete="off"
                                    placeholder="Such as subway etc..." id="keyword-box"
@@ -41,8 +41,7 @@
         <div class="fr last">
             <div class="ditu fr">
                 <a th:href="@{/rent/house/map(cityEnName=${searchBody.cityEnName})}" target="_blank">
-                    <i></i>
-                    Find House on map
+                    <i></i>map
                 </a>
             </div>
         </div>
@@ -94,8 +93,8 @@
                             <tr th:each="priceBlock : ${priceBlocks}">
                                 <a th:attr="data-bind=${priceBlock.key}" href="javascript:void(0);"
                                    th:onclick="'changeSimpleCondition(\'priceBlock\',\'' + ${priceBlock.key} + '\')'"
-                                   th:text="'Less than '+${priceBlock.value.min < 0} ? (${priceBlock.value.max}):
-                                    ('More than '+${priceBlock.value.max < 0} ? ${priceBlock.value.min} :
+                                   th:text="${priceBlock.value.min < 0} ? (${priceBlock.value.max}):
+                                    (${priceBlock.value.max < 0} ? ${priceBlock.value.min} :
                                      ${priceBlock.value.min} + '-' + ${priceBlock.value.max} + '$')">
                                 </a>
                             </tr>
@@ -112,8 +111,8 @@
                             <tr th:each="areaBlock : ${areaBlocks}">
                                 <a th:attr="data-bind=${areaBlock.key}" href="javascript:void(0);"
                                    th:onclick="'changeSimpleCondition(\'areaBlock\',\'' + ${areaBlock.key} + '\')'"
-                                   th:text="'Less than '+${areaBlock.value.min < 0} ? (${areaBlock.value.max} + 'Suare meter' ):
-                                    ('More than '+ ${areaBlock.value.max < 0} ? ${areaBlock.value.min} + 'Suare meter' :
+                                   th:text="${areaBlock.value.min < 0} ? (${areaBlock.value.max} + 'Suare meter' ):
+                                    (${areaBlock.value.max < 0} ? ${areaBlock.value.min} + 'Suare meter' :
                                      ${areaBlock.value.min} + '-' + ${areaBlock.value.max} + 'Suare meter')">
                                 </a>
                             </tr>
@@ -251,7 +250,7 @@
                                             <span th:text="${house.room} + 'room' + ${house.parlour} + 'parlour&nbsp;&nbsp;'"></span>
                                         </span>
                                         <span class="meters" th:text="${house.area} + 'square meter&nbsp;&nbsp;'"></span>
-                                        <span>朝向</span>
+                                        <span>Direction</span>
                                     </div>
                                     <div class="other">
                                         <div class="con">
@@ -331,7 +330,7 @@
 </script>
 <script src="/static/lib/layui/layui.js" type="text/javascript"></script>
 <script th:inline="javascript" type="text/javascript">
-    $('.xunwu-header .rent-page').addClass('on');
+    $('.searchhouse-header .rent-page').addClass('on');
     var data = {};
     function locate_url(start, size) {
         var keywords = $('#keyword-box').val();

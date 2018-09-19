@@ -3,7 +3,7 @@
  */
 
 $(function () {
-    $('.xunwu-header .center-page').addClass('on');
+    $('.searchhouse-header .center-page').addClass('on');
 
     $('.user-left .select a').on('click', function () {
         $('.user-left .select li').each(function () {
@@ -36,7 +36,7 @@ $(function () {
     $('.user-right .wait-record button').on('click', function () {
         var selected = $('.user-right .wait-record input[name="houseId"]:checked').val();
         if (typeof (selected) === 'undefined') {
-            layer.msg('请选择要预约的房源', {icon: 5, time: 2000});
+            layer.msg('Choose the house', {icon: 5, time: 2000});
             return false;
         }
 

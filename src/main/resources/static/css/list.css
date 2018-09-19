@@ -155,7 +155,7 @@
 }
 
 .tab-lst li.on a {
-    background: #0054a5;
+    background: #563d7c;
     color: #fff
 }
 
@@ -1132,7 +1132,7 @@ body {
     font-size: 0;
     position: relative;
     width: 173px;
-    height: 130px
+    height: 200px
 }
 
 .house-lst .pic-panel .ziroomTag {
@@ -1236,7 +1236,7 @@ body {
     width: 750px;
     position: relative;
     float: right;
-    height: 130px
+    height: 200px
 }
 
 .house-lst .info-panel h2 a {
