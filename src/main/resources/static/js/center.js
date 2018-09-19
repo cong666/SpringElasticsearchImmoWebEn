@@ -3,7 +3,7 @@
  */
 
 $(function () {
-    $('.xunwu-header .center-page').addClass('on');
+    $('.searchhouse-header .center-page').addClass('on');
 
     $('.user-left .select a').on('click', function () {
         $('.user-left .select li').each(function () {

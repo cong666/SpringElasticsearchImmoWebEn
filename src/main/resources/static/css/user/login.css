@@ -339,14 +339,14 @@ a:hover, a:focus {
 }
 
 /* Header */
-.xunwu-header {
+.searchhouse-header {
     padding: 2em 190px 5em;
     letter-spacing: -1px;
     text-align: center;
     background: #66677c;
 }
 
-.xunwu-header h1 {
+.searchhouse-header h1 {
     color: #D5D6E2;
     font-weight: 600;
     font-size: 3em;
@@ -354,7 +354,7 @@ a:hover, a:focus {
     margin-bottom: 30px;
 }
 
-.xunwu-header h1 span {
+.searchhouse-header h1 span {
     display: block;
     font-size: 60%;
     font-weight: 400;
@@ -520,11 +520,11 @@ a:hover, a:focus {
 }
 
 @media screen and (max-width: 1024px) {
-    .xunwu-header {
+    .searchhouse-header {
         padding: 2em 10% 2em;
     }
 
-    .xunwu-header h1 {
+    .searchhouse-header h1 {
         font-size: 1.4em;
     }
 
@@ -534,11 +534,11 @@ a:hover, a:focus {
 }
 
 @media screen and (max-width: 960px) {
-    .xunwu-header {
+    .searchhouse-header {
         padding: 2em 10% 2em;
     }
 
-    .xunwu-header h1 {
+    .searchhouse-header h1 {
         font-size: 1.2em;
     }
 
@@ -556,7 +556,7 @@ a:hover, a:focus {
 }
 
 @media screen and (max-width: 766px) {
-    .xunwu-header h1 {
+    .searchhouse-header h1 {
         font-size: 1.3em;
     }
 
@@ -566,11 +566,11 @@ a:hover, a:focus {
 }
 
 @media screen and (max-width: 640px) {
-    .xunwu-header {
+    .searchhouse-header {
         padding: 2em 10% 2em;
     }
 
-    .xunwu-header h1 {
+    .searchhouse-header h1 {
         font-size: 1em;
     }
 

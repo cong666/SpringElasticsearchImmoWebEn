@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="applicable-device" content="pc">
 
-    <title>寻屋</title>
+    <title>Find House</title>
     <meta name="description" content="Find your House"/>
     <meta name="keywords" content="Find House"/>
     <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
@@ -39,8 +39,7 @@
         <div class="fr last">
             <div class="ditu fr">
                 <a th:href="@{/rent/house/map(cityEnName=${city.enName})}" target="_blank">
-                    <i></i>
-                    Find House On Map
+                    <i></i>Map
                 </a>
             </div>
         </div>
@@ -149,7 +148,7 @@
                     <div class="brokerName">
                         <a href="#" class="name LOGCLICK" data-log_id="20001"
                            data-bl="agent" data-el="1000000020276906" th:text="${agent.name}">Agent</a>
-                        <span class="tag ">高级经纪人</span>
+                        <span class="tag ">Agent</span>
                         <a class="LOGCLICK" data-log_id="20001" data-bl="agentim"
                            data-el="1000000020276906" style="display: none;" title="Online consultation"
                            data-ucid="1000000020276906">
@@ -400,7 +399,7 @@
 
             function cancelSubscribe() {
                 layer.confirm('Are you sure?', {
-                    btn: ['Yes', 'No'] //按钮
+                    btn: ['Yes', 'No']
                 }, function () {
                     $.ajax({
                         url: '/api/user/house/subscribe?house_id=' + houseId,
