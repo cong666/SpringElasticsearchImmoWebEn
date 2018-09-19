@@ -1,0 +1,53 @@
+#add characterEncoding for Chinese
+datasource:
+  esimmo:
+    url: jdbc:mysql://localhost:3309/esimmo?characterEncoding=utf-8
+    username: docker
+    password: docker
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    hibernate:
+      hbm2ddl.method: update
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQL5Dialect
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    guru.springframework.controllers: DEBUG
+    org.hibernate: DEBUG
+
+spring:
+  security:
+    basic:
+      enabled: false
+    user:
+      name: ccong
+      password: ccong
+  thymeleaf:
+    cache: false
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+  #don't do the hot deployment when change static resources
+  devtools:
+    restart:
+      exclude: templates/**,static/**
+
+  #multipart config (image upload)
+  http:
+    multipart:
+      enable: true
+      location: /static/images/upload
+      file-size-threshold: 5MB
+      max-request-size: 20MB
+
+elasticsearch:
+  clustername: elasticcluster
+  host: localhost
+  port: 9300

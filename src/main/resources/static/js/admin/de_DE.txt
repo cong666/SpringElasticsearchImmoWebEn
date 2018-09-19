@@ -1,0 +1,18 @@
+{
+	"processing": "Processing...",
+	"lengthMenu": "Display EveryPage _MENU_ Item",
+	"zeroRecords": "No Records Found",
+	"sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+	"info": "Display _START_ To _END_ ，Have _TOTAL_ Item",
+	"infoEmpty": "0条",
+	"infoFiltered": "(Filter From _MAX_)",
+	"infoPostFix": "",
+	"search": "Search",
+	"url": "",
+	"paginate": {
+		"first":    "FirstPage",
+		"previous": "Last Page",
+		"next":     "Next Page",
+		"last":     "The Last Page"
+	}
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/lib/datatables/1.10.15/jquery.dataTables.css">
+    <div th:include="admin/common :: head"></div>
+    <link rel="stylesheet" type="text/css" href="/static/css/admin/house-list.css">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="/static/lib/respond.min.js"></script>
+    <![endif]-->
+    <title>Reservation List</title>
+</head>
+<body>
+<nav class="breadcrumb">
+    <i class="Hui-iconfont">&#xe67f;</i> Home <span class="c-gray en">&gt;</span> House Management
+    <span class="c-gray en">&gt;</span> House List
+    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+       href="javascript:location.replace(location.href);" title="Refresh"><i class="Hui-iconfont">&#xe68f;</i>
+    </a>
+</nav>
+<div class="text-c">
+
+</div>
+<div class="cl pd-5 bg-1 bk-gray mt-20">
+    <button onclick="removeIframe()" class="btn btn-primary radius">Close Tab</button>
+</div>
+
+<div class="page-container">
+    <div class="mt-20">
+        <table id="data-table"
+               class="table table-border table-bordered table-bg table-hover table-sort table-responsive"
+               style="width: 100%">
+            <thead>
+            <tr class="text-c">
+                <th width="15">ID</th>
+                <th>Title</th>
+                <th>Cover</th>
+                <th>Area</th>
+                <th>Price</th>
+                <th>Floor</th>
+                <th>Visit</th>
+                <th width="70">Reservation Time</th>
+                <th>User Information</th>
+                <th width="80">Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer th:include="admin/common :: footer"></footer>
+<script type="text/javascript" src="/static/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/lib/datatables/1.10.15/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/static/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="/static/js/admin/house-subscribe.js"></script>
+</body>
+</html>

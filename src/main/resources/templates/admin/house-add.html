@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="admin/common :: head"></div>
+    <link rel="stylesheet" type="text/css" href="/static/lib/webuploader/0.1.5/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/admin/add-house.css">
+    <title>Add House</title>
+</head>
+<body>
+<div>
+    <content class="page-container">
+        <form class="form form-horizontal" id="form-house-add">
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Title：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Title" id="title"
+                           name="title">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>市：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box" style="widows: 0;">
+                        <select class="select" name="cityEnName" id="city">
+                            <option value="">Please Choose</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>区/县：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box" style="widows: 0;">
+                        <select class="select" name="regionEnName" id="region">
+                            <option value="">Please Choose the city</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Street：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Street" id="street" name="street">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Block：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Block" id="district" name="district">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Address：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Address" id="detailAddress"
+                           name="detailAddress">
+                </div>
+            </div>
+            <div class="row cl">
+
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Number of rooms：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="1" placeholder="room" id="room"
+                           name="room">
+                </div>
+
+                <label class="form-label col-xs-4 col-sm-2">Number of parlours：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="0" placeholder="Number of parlours" id="parlour"
+                           name="parlour">
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>房间朝向：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <span class="select-box" style="widows: 0;">
+				        <select name="direction" class="select">
+                            <option value="1">East facing</option>
+                            <option selected value="2">South facing</option>
+                            <option value="3">West facing</option>
+                            <option value="4">North facing</option>
+                            <option value="5">South west</option>
+                        </select>
+				    </span>
+                </div>
+
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Construction time：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text"
+                           onfocus="WdatePicker({ dateFmt:'yyyy',maxDate:'#F{$dp.$D(\'buildYear\')||\'%y\'}' })"
+                           id="buildYear" name="buildYear" class="input-text Wdate">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Floor：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="0" placeholder="Floor" id="floor" name="floor">
+                </div>
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Total floor：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="0" placeholder="Total floor" id="totalFloor"
+                           name="totalFloor">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Area：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="0" placeholder="" id="area" name="area">
+                </div>
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Price：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="0" placeholder="" id="price" name="price">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>Rent method：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <span class="select-box" style="widows: 0;">
+				        <select name="rentWay" class="select">
+                            <option value="0">Entire rent</option>
+                            <option value="1">Share rent</option>
+                        </select>
+				    </span>
+                </div>
+                <label class="form-label col-xs-4 col-sm-2">Subway：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <span class="select-box" style="widows: 0;">
+				        <select name="subwayLineId" class="select" id="subwayLine">
+                            <option value="">Please choose the city</option>
+                        </select>
+				    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">Subway station：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <span class="select-box" style="widows: 0;">
+				        <select name="subwayStationId" class="select" id="subwayStation">
+                            <option value="">Please choose the subway line</option>
+                        </select>
+				    </span>
+                </div>
+                <label class="form-label col-xs-4 col-sm-2">Distance to station：</label>
+                <div class="formControls col-xs-8 col-sm-2">
+                    <input type="text" class="input-text" value="-1" placeholder="" id="distanceToSubway"
+                           name="distanceToSubway">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">Tag</label>
+                <div id="tags" class="formControls col-xs-8 col-sm-9">
+                    <span class="label label-default">Collective heating</span>
+                    <span class="label label-default">Balcony</span>
+                    <span class="label label-default">Radiated</span>
+                    <span class="label label-default">Individual washroom</span>
+                    <span class="label label-default">Air conditioning</span>
+                    <span class="label label-default">Good Decoration</span>
+                    <span class="label label-default">Visit the room at any time</span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">House introduction：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="House introduction"
+                           id="layoutDesc" name="layoutDesc">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">Transport：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Transport around"
+                           id="traffic" name="traffic">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">Around：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="Around Service"
+                           id="roundService" name="roundService">
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">General Description：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="description" cols="" rows="" class="textarea" placeholder="Say something like a core selling point..."
+                          datatype="*10-100" dragonfly="true" nullmsg="Need to add comment！"></textarea>
+                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                </div>
+            </div>
+
+            <div class="uploader-list-container" style=" width: 60%; height: 30%; position: relative;
+                margin-left:17%;">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePicker-2"></div>
+                        <p>You can also drag and drop the image here , 5 max</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress"><span class="text">0%</span> <span class="percentage"></span></div>
+                    <div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div>
+                        <div class="uploadBtn">Begin to upload</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">Cover：</label>
+                <div id="upload-cover-container" class="formControls col-xs-8 col-sm-9">
+                    <span class="cover-desc">Please choose the cover</span>
+                </div>
+                <!--<input id="cover" type="hidden" value=""/>-->
+            </div>
+
+            <div class="upload-photo-ids-container">
+            </div>
+
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                    <button class="btn btn-primary radius" type="submit"><i
+                            class="Hui-iconfont">&#xe632;</i>
+                    </button>
+                    <!--<button onClick="layer_close();" class="btn btn-default radius"-->
+                    <button onClick="removeIframe();" class="btn btn-default radius"
+                            type="button">&nbsp;&nbsp;Cancel&nbsp;&nbsp;
+                    </button>
+                </div>
+            </div>
+        </form>
+    </content>
+</div>
+
+<footer th:include="admin/common :: footer"></footer>
+
+<script type="text/javascript" src="/static/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/static/lib/webuploader/0.1.5/webuploader.min.js"></script>
+<script type="text/javascript" src="/static/js/admin/upload.js"></script>
+<script type="text/javascript" src="/static/js/admin/house-common.js"></script>
+<script type="text/javascript" src="/static/js/admin/house-add.js"></script>
+</body>
+</html>

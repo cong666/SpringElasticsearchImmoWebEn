@@ -1,0 +1,154 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="Content-language" content="zh-CN"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="applicable-device" content="pc">
+
+    <title>Find House</title>
+    <meta name="description" content="Find Your House"/>
+    <meta name="keywords" content="Find House"/>
+    <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
+    <link href="/static/css/index.css" rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<header th:replace="common :: header"></header>
+
+<div class="city-change animated bounceIn" style="display: block;">
+    <span class="close"></span>
+    <div class="title">Choose City
+        <span class="city-tab">
+            <span class="code1">Popular Cities:</span>
+            <a href="/rent/house?cityEnName=paris" title="Paris">Paris</a>
+            <a href="/rent/house?cityEnName=lyon" title="Lyon">Lyon</a>
+            <a href="/rent/house?cityEnName=lille" title="Lille">Lille</a>
+            <a href="/rent/house?cityEnName=bordeaux" title="Bordeaux">Bordeaux</a>
+        </span>
+    </div>
+    <div class="title-line"></div>
+    <div class="fc-main clear">
+        <div class="fl citys-l">
+            <ul>
+                <li class="clear"><span class="code-title fl">P</span>
+                    <div class="city-enum fl"><a href="/rent/house?cityEnName=paris" title="Paris">Paris</a></div>
+                </li>
+                <li class="clear"><span class="code-title fl">A</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=cd" title="Aix-en-Provence">Aix-en-Provence</a>
+                        <a href="/rent/house?cityEnName=cq" title="Arles‎">Arles‎</a>
+                        <a href="/rent/house?cityEnName=cs" title="Avignon‎">Avignon‎</a>
+                    </div>
+                </li>
+                <li class="clear"><span class="code-title fl">M</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=dl" title="Marseille">Marseille</a>
+                        <a href="/rent/house?cityEnName=dg" title="Montpellier‎">Montpellier‎</a>
+                    </div>
+                </li>
+                <li class="clear"><span class="code-title fl">B</span>
+                    <div class="city-enum fl"><a href="/rent/house?cityEnName=fs" title="Bordeaux">Bordeaux</a></div>
+                </li>
+                <li class="clear"><span class="code-title fl">G</span>
+                    <div class="city-enum fl"><a href="/rent/house?cityEnName=gz" title="Strasbourg">Strasbourg</a></div>
+                </li>
+                <li class="clear"><span class="code-title fl">L</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=hz" title="Le Havre‎ ">Le Havre‎</a>
+                        <a href="/rent/house?cityEnName=hui" title="Le Mans‎">Le Mans‎</a>
+                        <a href="/rent/house?cityEnName=hk" title="Lille‎">Lille‎</a>
+                        <a href="/rent/house?cityEnName=hf" title="Lyon‎">Lyon‎</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="fl citys-r">
+            <ul>
+                <li class="clear">
+                    <span class="code-title fl">N</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=ls" title="Nancy‎">Nancy‎</a>
+                        <a href="/rent/house?cityEnName=lf" title="Nante">Nante</a>
+                    </div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">V</span>
+                    <div class="city-enum fl"><a href="/rent/house?cityEnName=nj" title="Verdun">Verdun</a></div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">M</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=qd" title="Montauban">Montauban</a>
+                        <a href="/rent/house?cityEnName=qh" title="Moulins, Allier">Moulins, Allier</a>
+                    </div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">A</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=sh" title="Agen">Agen</a>
+                        <a href="/rent/house?cityEnName=sz" title="Albi">Albi</a>
+                        <a href="/rent/house?cityEnName=su" title="Angers">Angers</a>
+                        <a href="/rent/house?cityEnName=sjz" title="Aubenas">Aubenas</a>
+
+                    </div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">C</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=tj" title="Caen">Caen</a>
+                        <a href="/rent/house?cityEnName=ty" title="Cannes">Cannes</a>
+                    </div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">L</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=wh" title="La Garde">La Garde</a>
+                        <a href="/rent/house?cityEnName=wx" title="Lens, Pas-de-Calais">Lens, Pas-de-Calais</a>
+                        <a href="/rent/house?cityEnName=wc" title="Lure, Haute-Saône">Lure, Haute-Saône</a>
+                    </div>
+                </li>
+                <li class="clear">
+                    <span class="code-title fl">T</span>
+                    <div class="city-enum fl">
+                        <a href="/rent/house?cityEnName=xm" title="Tarascon">Tarascon</a>
+                        <a href="/rent/house?cityEnName=xa" title="Thionville">Thionville</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div th:include="common :: footer"></div>
+<script th:inline="javascript" type="text/javascript">
+    $(function () {
+        $('.xunwu-header .index-page').addClass('on');
+
+        function msgTip(content) {
+            layer.open({
+                type: 1,
+                offset: '100px',
+                area: ['420px', '240px'],
+                skin: 'layui-layer-lan',
+                closeBtn: 1,
+                anim: 2,
+                shadeClose: true,
+                content: content,
+                time: 2000
+            });
+        }
+
+        var msg = [[${msg}]];
+        if (msg === 'must_chose_city') {
+            msgTip('<p class="msgTip">You must choose one city</p>');
+        } else if (msg === 'not_support_city') {
+            msgTip('<p class="msgTip">Can not choose city</p>');
+        } else {
+            // TODO
+        }
+    });
+</script>
+</body>
+</html>

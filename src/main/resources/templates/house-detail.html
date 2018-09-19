@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-language" content="zh-CN"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="applicable-device" content="pc">
+
+    <title>寻屋</title>
+    <meta name="description" content="Find your House"/>
+    <meta name="keywords" content="Find House"/>
+    <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
+    <link href="/static/css/list.css" rel='stylesheet' type='text/css'/>
+    <link href="/static/lib/layui/layui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/detail.css" type="text/css"/>
+</head>
+<body>
+<header th:replace="common :: header"></header>
+<div class="searchs">
+    <div class="wrapper">
+        <div class="fl" log-mod="search">
+            <div class="search-txt">
+                <form class="clear" id="searchForm" action="#" th:action="@{/rent/house}" method="post">
+                    <div class="search-tab"><i class="icon" data-bl="switch"></i>
+                        <div data-bl="switch" class="check">KeyWord</div>
+
+                        <div class="txt-search">
+                            <input class="left txt" name="keyword" autocomplete="off"
+                                   placeholder="Like subway near by etc..." id="keyword-box">
+                        </div>
+                    </div>
+                    <button type="submit" class="act-search btn home-ico ico-search LOGCLICKEVTID">
+                        搜索
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="fr last">
+            <div class="ditu fr">
+                <a th:href="@{/rent/house/map(cityEnName=${city.enName})}" target="_blank">
+                    <i></i>
+                    Find House On Map
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 面包屑模块 -->
+<div class="intro clear" mod-id="lj-common-bread">
+    <div class="container">
+        <div class="fl l-txt">
+            <i class="icon"></i>&nbsp;
+            <a href="/">Find House</a>
+            <span class="stp">&nbsp;&gt;&nbsp;</span>[<a href="/" title="选择城市">
+            <span th:text="${city.cnName}">City</span></a>]Rent
+            <span class="stp">&nbsp;&gt;&nbsp;</span>Houses
+        </div>
+        <div class="fr r-txt"></div>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="title-wrapper">
+        <div class="content">
+            <div class="title">
+                <h1 class="main" th:text="${house.title}"></h1>
+                <div class="sub" th:text="${house.houseDetail.description}">He/She write nothing!</div>
+            </div>
+            <div class="btnContainer ">
+                <button id="subscribe" th:switch="${house.subscribeStatus}"
+                        th:attr="data-bind=${house.subscribeStatus}" th:style="${house.subscribeStatus != 0} ? 'background-color: #6a7b8c; color: black;'">
+                    <span th:case="1">Added to visit List</span>
+                    <span th:case="2">Reserved</span>
+                    <span th:case="3">Visited</span>
+                    <span th:case="0">Reserve </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="overview">
+        <div class="img" id="topImg">
+            <div class="imgContainer layui-carousel" id="overview-photos">
+                <div carousel-item>
+                    <div th:each="picture : ${house.pictures}">
+                        <img th:src="${picture.cdnPrefix + picture.path}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content zf-content">
+            <div class="price ">
+                <span class="total" th:text="${house.price}">-</span>
+                <span class="unit">
+        <span>$/Month</span>
+      </span>
+
+
+                <span class="tips decoration">Good Decoration</span>
+                <div class="removeIcon"></div>
+            </div>
+            <div class="zf-room">
+                <p class="lf"><i>Area：</i><span th:text="${house.area}"></span>Square Meter</p>
+                <p class="lf"><i>House Decription：</i>
+                    <span th:text="${house.room}"></span>Room<span th:text="${house.parlour}"></span>Parlour<span
+                            th:text="${house.bathroom}"></span>Toilet
+                    <span
+                            th:text="${house.houseDetail.rentWay == 0} ? 'Entire Rent' : 'Share Rent'">Rent Way</span></p>
+                <p class="lf"><i>Floor：</i><span th:text="${house.floor}"></span>Floor (Have<span
+                        th:text="${house.totalFloor}">0</span>Floor)</p>
+                <p class="lf"><i>Facing：</i>
+                    <span th:switch="${house.direction}">
+                        <span th:case="1">East Facing</span>
+                        <span th:case="2">South Facing</span>
+                        <span th:case="3">West Facing</span>
+                        <span th:case="4">North Facing</span>
+                        <span th:case="5">South and North</span>
+                        <span th:case="*">Others</span>
+                    </span>
+                </p>
+                <div class="clear"></div>
+                <p><i>Subway：</i>
+                    <span th:if="${house.distanceToSubway > -1}">
+                        Distance to Subway<span th:text="${house.houseDetail.subwayLineName}">Line</span>
+                        <span th:text="${house.houseDetail.subwayStationName}">Station</span>
+                        站<span th:text="${house.distanceToSubway}">0</span>Meter
+                    </span>
+                    <span th:if="${house.distanceToSubway < 0}">No data</span>
+                </p>
+                <p><i>Residential area：</i>
+                    <a href="/xiaoqu/1111027382235/" th:text="${house.district}">Residential area</a>
+                    - <a href="/zufang/c1111027382235/"><span th:text="${houseCountInDistrict}"></span>are renting</a>
+                </p>
+                <p><i>Region：</i>
+                    <a href="/zufang/chaoyang/" th:text="${region.cnName}">Region</a>
+                </p>
+                <p class="lf"><i>Publish date：</i>
+                    <span th:text="${#dates.format(house.lastUpdateTime, 'yyyy-MM-dd')}">Date</span>
+                </p>
+                <div class="clear"></div>
+            </div>
+            <div class="brokerInfo" log-mod="zufang_detail_diamond-first">
+                <a href="#">
+                    <img class="LOGCLICK" data-log_id="20001" data-bl="agent" data-el="1000000020276906"
+                         th:src="${agent.avatar}" alt="Agent">
+                </a>
+                <div class="brokerInfoText">
+                    <div class="brokerName">
+                        <a href="#" class="name LOGCLICK" data-log_id="20001"
+                           data-bl="agent" data-el="1000000020276906" th:text="${agent.name}">Agent</a>
+                        <span class="tag ">高级经纪人</span>
+                        <a class="LOGCLICK" data-log_id="20001" data-bl="agentim"
+                           data-el="1000000020276906" style="display: none;" title="Online consultation"
+                           data-ucid="1000000020276906">
+                        </a>
+                    </div>
+                    <div class="evaluate">
+                        <span class="time">Saw：<span th:text="${house.watchTimes}">0</span>Times</span>
+                    </div>
+                    <div class="phone" th:text="${agent.phoneNumber}">
+                    </div>
+                </div>
+            </div>
+            <div class="houseRecord">
+                <span class="houseNum">House Number：<span th:text="${house.id}"></span></span>
+                <div class="right">
+                    <span class="detail">All House are in good status now !!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="detailPageTab">
+    <ul style="position: relative; top: 0px; z-index: 1000; width: 1000px;">
+        <li>
+            <a class="force" href="#introduction">House Introduction</a>
+        </li>
+        <li>
+            <a href="#around" class="">Around Service</a>
+        </li>
+    </ul>
+</div>
+
+<div class="content-wrapper introduction-wrapper" id="introduction">
+    <div class="introduction">
+        <div class="title">House Introduction</div>
+        <div class="introContent">
+            <div class="base">
+                <div class="name">Basic information</div>
+                <div class="content">
+                    <ul>
+                        <li><span class="label">Rent way：</span>
+                            <span th:text="${house.houseDetail.rentWay == 0 ? 'Entire Rent' : 'Share Rent'}"></span>
+                        </li>
+                        <li>
+                            <span class="label">Pay method：</span>
+                            Every season
+                        </li>
+                        <li>
+                            <span class="label">House Status：</span>
+                            <span th:switch="${house.status}">
+                                <span th:case="0">To Verify</span>
+                                <span th:case="1">To Rent</span>
+                                <span th:case="2">Rented</span>
+                                <span th:case="3">Invalidation</span>
+                            </span>
+                        </li>
+                        <li><span class="label">House Direction：</span>
+                            <span th:switch="${house.direction}">
+                                <span th:case="1">East Facing</span>
+                                <span th:case="2">South Facing</span>
+                                <span th:case="3">West Facing</span>
+                                <span th:case="4">North Facing</span>
+                                <span th:case="5">South and North</span>
+                                <span th:case="*">Others</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="name">House Tags</div>
+                <div class="zf-tag">
+                    <ul class="se">
+                        <li class="tag1 tags">
+                            <span></span>
+                            Bed
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag11 tags">
+                            <span></span>
+                            Wardrobe
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag12 tags">
+                            <span></span>
+                            Table and Chairs
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag2 tags">
+                            <span></span>
+                            TV
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag3 tags">
+                            <span></span>
+                            refrigerator
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag4 tags">
+                            <span></span>
+                            washing machine
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag5 tags">
+                            <span></span>
+                            Air condition
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag10 tags">
+                            <span></span>
+                            Water heater
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag13 tags">
+                            <span></span>
+                            Microwave oven
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag6 tags">
+                            <span></span>
+                            Heating
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag7 tags">
+                            <span></span>
+                            Internet
+                            <p>
+                            </p>
+                        </li>
+                        <li class="tag9 tags">
+                            <span></span>
+                            Natural gas
+                            <p>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="featureContent">
+                    <ul>
+                        <li>
+                            <span class="label">House Introduction：</span>
+                            <span class="text" th:text="${house.houseDetail.layoutDesc}">No Description</span>
+                        </li>
+                        <li>
+                            <span class="label">Transport：</span>
+                            <span class="text" th:text="${house.houseDetail.traffic}">No Description</span>
+                        </li>
+                        <li>
+                            <span class="label">Around Service：</span>
+                            <span class="text" th:text="${house.houseDetail.roundService}">No Description</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="more">More Information</div>
+    </div>
+</div>
+
+<div id="only" data-city="bj" data-page="zufang_view"></div>
+<div th:include="common :: footer"></div>
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://static.meiqia.com/dist/meiqia.js?_=t';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 75794);
+</script>
+<script src="/static/lib/layui/layui.js" type="text/javascript"></script>
+<script th:inline="javascript" type="text/javascript">
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#overview-photos',
+            width: '100%', //
+            arrow: 'always', //
+            //,anim: 'updown' //
+            height: '400px',
+            autoplay: false //
+        });
+    });
+
+    $(function () {
+        var houseId = [[${house.id}]],
+            subscribeBtn = $('#subscribe');
+        subscribeBtn.on('click', function () {
+            var subscribeStatus = subscribeBtn.attr('data-bind');
+            switch (subscribeStatus) {
+                case "1":
+                case "2":
+                    cancelSubscribe();
+                    break;
+                case "3":
+                    layer.msg('You have visited!', {icon: 5, time: 2000});
+                    break;
+                default:
+                    subscribe();
+                    break;
+            }
+
+            function subscribe() {
+                $.ajax({
+                    url: '/api/user/house/subscribe',
+                    data: {
+                        'house_id': houseId
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        if (data.code === 200) {
+                            subscribeBtn.attr('data-bind', "1");
+                            subscribeBtn.css('background-color', '#6a7b8c');
+                            subscribeBtn.css('color', 'black');
+                            subscribeBtn.find('span').text('Added into the visit list');
+                        } else if (data.code === 403) {
+                            layer.msg('Please Login', {icon: 5, time: 2000});
+                        } else {
+                            layer.msg(data.message, {icon: 5, time: 2000});
+                        }
+                    },
+                    error: function (xhr, response, error) {
+                        if (xhr.status === 403) {
+                            layer.msg('Please login', {icon: 5, time: 2000});
+                        } else {
+                            layer.msg('Server Error: ' + response, {icon: 5, time: 3000});
+                        }
+                    }
+                });
+            }
+
+            function cancelSubscribe() {
+                layer.confirm('Are you sure?', {
+                    btn: ['Yes', 'No'] //按钮
+                }, function () {
+                    $.ajax({
+                        url: '/api/user/house/subscribe?house_id=' + houseId,
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data.code === 200) {
+                                subscribeBtn.attr('data-bind', "0")
+                                    .css('background-color', '#0054a5')
+                                    .css('color', '#fff');
+                                subscribeBtn.find('span').text('Reserve the house').css('color');
+                                layer.msg('Canceled successful!', {icon: 6, time: 2000});
+                            } else if (data.code === 403) {
+                                layer.msg('Please login', {icon: 5, time: 2000});
+                            } else {
+                                layer.msg(data.message, {icon: 5, time: 2000});
+                            }
+                        },
+                        error: function (xhr, response, error) {
+                            if (xhr.status === 403) {
+                                layer.msg('Please login', {icon: 5, time: 2000});
+                            } else {
+                                layer.msg('Server Error: ' + response, {icon: 5, time: 3000});
+                            }
+                        }
+                    });
+                });
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

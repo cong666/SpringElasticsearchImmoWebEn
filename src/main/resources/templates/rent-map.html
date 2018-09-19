@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-language" content="zh-CN"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="applicable-device" content="pc">
+
+    <title>Map</title>
+    <meta name="description" content="Find Your House"/>
+    <meta name="keywords" content="Find House"/>
+    <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
+    <link href="/static/lib/layui/layui.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/rent-map.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+</head>
+<body>
+<header th:replace="common :: header"></header>
+<div>
+    <div class="left-region">
+        <input id="cityEnName" th:value="${city.enName}" type="hidden">
+        <input id="cityCnName" th:value="${city.cnName}" hidden="hidden">
+        <div class="r-hd2">
+            <ol class="order-select">
+                <li class="s-default on" data-bind="lastUpdateTime" data-direction="desc">Default</li>
+                <li class="s-price s-asc" data-bind="price" data-direction="asc">Low Price
+                    <i class="asc">↑</i>
+                </li>
+                <li class="s-area s-asc" data-bind="area" data-direction="desc">Big Area
+                    <i class="asc">↓</i></li>
+                <li class="s-new" data-bind="createTime" data-direction="desc">Newest</li>
+            </ol>
+        </div>
+        <div class="r-hd3" style="display: block;">
+            <div class="r-hd3-content">
+                <ol class="i-card i-card-1">
+                    <li class="i-card-name" th:text="${city.CnName}">Paris</li>
+                    <li class=""><span th:text="${total}">0</span>house to rent</li>
+                    <li>Have<span th:text="${#lists.size(regions)}"></span>regions</li>
+                </ol>
+            </div>
+            <div class="r-hd3-bg">
+                <div class="r-hd3-cycle">
+                    <div></div>
+                </div>
+                <div class="r-hd3-triangle"></div>
+            </div>
+        </div>
+        <div class="r-container" style="position: relative; overflow: auto;">
+            <ul id="house-flow" class="flow-default r-content">
+
+            </ul>
+        </div>
+    </div>
+    <div id="mapid"></div>
+</div>
+<!--<div th:include="common :: footer"></div>-->
+<script type="text/javascript" src="/static/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/rent-map.js"></script>
+<script type="text/javascript" th:inline="javascript">
+
+</script>
+</body>
+</html>
+

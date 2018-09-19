@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/static/lib/layui/layui.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
+    <link href="/static/css/user/center.css" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<header th:replace="common :: header"></header>
+<div class="container user-body">
+    <div class="user-left fl">
+        <div class="avatar">
+            <img src="/static/images/user/default-avatar.png" width="80px" height="80px">
+        </div>
+
+        <div class="user-name">
+            Welcome，<span th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></span>
+        </div>
+
+        <ul class="select">
+            <li class="hover"><a href="javascript:void(0);" data-bind="wait-record">Houses to visit</a></li>
+            <li><a href="javascript:void(0);" data-bind="subscribe">My Reservation</a></li>
+            <li><a href="javascript:void(0);" data-bind="finish-record">House Visit History</a></li>
+            <li><a href="javascript:void(0);" data-bind="edit-info">Modify</a></li>
+        </ul>
+    </div>
+    <div class="user-right fl">
+        <div class="right-body wait-record on">
+            <div class="title">Houses to visit</div>
+            <hr class="split-line"/>
+            <form action="#">
+                <div class="content">
+                    <ul id="wait-record-list">
+                    </ul>
+                </div>
+                <div class="fl blue-btn">
+                    <span style="color: red">*</span><span>Phone：
+                    <input name="telephone" type="text" placeholder="Phone"></span>
+                    <span style="color: red">*</span><span>Reservation Date：
+                    <input type="text" name="orderTime"
+                           onFocus="WdatePicker({startDate:'%y-%M-{%d+1}', dateFmt:'yyyy-MM-dd',
+                                    alwaysUseStartDate:true, minDate:'%y-%M-{%d+1}'})"/></span>
+                    <button type="submit">Confirm</button>
+                </div>
+            </form>
+        </div>
+        <div class="right-body subscribe">
+            <div class="title">Reservation List</div>
+            <hr class="split-line"/>
+            <div class="content">
+                <ul>
+                </ul>
+            </div>
+            <div class="fl blue-btn">
+                <button type="button">Cancel Reservation</button>
+            </div>
+        </div>
+
+        <div class="right-body finish-record">
+            <div class="title">House Visit History</div>
+            <hr class="split-line"/>
+            <div class="content">
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-body edit-info">
+            <div class="title">Personal information</div>
+            <hr class="split-line"/>
+            <div class="content">
+                <div class="tab">
+                    <span class="actTab hover" data-bind="change-name">Modify Name</span>
+                    <span class="actTab" data-bind="change-email">Modify Email</span>
+                    <span class="actTab" data-bind="change-password">Modify Password</span>
+                </div>
+                <div class="modify-tab">
+                    <div class="modify-content change-name on">
+                        <ul class="change-pwd">
+                            <li>
+                                <span>Set up name：</span>
+                                <input type="text" name="name" class="nickName">
+                            </li>
+                            <li><span></span><a class="nameSubmit lj-btn">Update</a></li>
+                        </ul>
+                    </div>
+                    <div class="modify-content change-email">
+                        <ul class="change-pwd">
+                            <li>
+                                <span>Set up email：</span>
+                                <input type="text" name="email" class="email">
+                            </li>
+                            <li><span></span><a class="emailSubmit lj-btn">Update</a></li>
+                        </ul>
+                    </div>
+                    <div class="modify-content change-password">
+                        <ul class="change-pwd">
+                            <li>
+                                <span>Set up password：</span>
+                                <input type="password" name="password" class="nickName">
+                            </li>
+                            <li><span></span><a class="passwordSubmit lj-btn">Update</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="common :: footer"></div>
+<script type="text/javascript" src="/static/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/center.js"></script>
+</body>
+</html>
