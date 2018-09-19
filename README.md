@@ -1,13 +1,13 @@
 # SpringElasticsearchImmoWebEn
 Use ElasticSearch to optimize the house searching
 
-![Search Page Show](src/main/resources/static/images/upload/github_readme1.png)
-
 ## Introduction
 ### Technologies : 
      - SpringBoot2.1,Datatables, BootStrap.
      - MySQL, ElasticSearch.
      - Application Server : SpringBoot Embedded Server
+
+![Search Page Show](src/main/resources/static/images/upload/github_readme1.png)
    
 ### Purpose of this application
 
