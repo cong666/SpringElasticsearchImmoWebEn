@@ -11,7 +11,7 @@ Use ElasticSearch to optimize the house searching
    
 ### Purpose of this application
 
-It's intresting to see how ElasticSearch work and how to create the search engine using ElasticSearch for the real estate website.
+Create the search engine using ElasticSearch for the real estate website.
 
 ### House index template
 
